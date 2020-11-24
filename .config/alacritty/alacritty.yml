@@ -1,0 +1,58 @@
+# Window Customization
+window:
+  dimensions:
+    columns: 140
+    lines: 38
+  padding:
+    x: 25
+    y: 25
+  decorations: none
+scrolling:
+  history: 10000
+  multiplier: 3
+window.dynamic_title: true
+background_opacity: 0.4
+# Font Customization
+font:
+  normal:
+    family: Hack Nerd Font 
+    style: Regular
+  size: 13
+#shell:
+  #program: /bin/zsh
+  #args:
+    #- -l
+    #- -c
+    #- "tmux attach || tmux"
+  use_thin_strokes: false
+  debug:
+    persistent_logging: false
+draw_bold_text_with_bright_colors: true
+# Colors (Flat remix)
+colors:
+  # Default colors
+  primary:
+    background: "#1F2229"
+    foreground: "#E6E6E6"
+    #
+  # Normal colors
+  normal:
+    black: "#1F2229"
+    red: "#D41919"
+    green: "#5EBDAB"
+    yellow: "#FEA44C"
+    blue: "#367BF0"
+    magenta: "#BF25ED"
+    cyan: "#49AEE6"
+    white: "#E6E6E6"
+
+  # Bright colors
+  bright:
+    black: "#8C42AB"
+    red: "#EC0101"
+    green: "#47D489"
+    yellow: "#FF8A18"
+    blue: "#277FFF"
+    magenta: "#D71655"
+    cyan: "#05A1F7"
+    white: "#FFFFFF"

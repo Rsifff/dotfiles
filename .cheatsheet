@@ -1,0 +1,33 @@
+Win + Shift + Enter -> Terminal
+Win + Shift + q -> kill windows
+
+Rotate through the available layout algorithms
+Win + space -> NextLayout)
+
+Reset the layouts on the current workspace to default
+Win + Shift + space 
+Win + Shift + h), sendMessage $ JumpToLayout "Mirror Tall")
+Win + Shift + v), sendMessage $ JumpToLayout "Tall")
+Win + Shift + f), sendMessage $ JumpToLayout "Full")
+Win + Shift + t), sendMessage $ JumpToLayout "Tabbed Simplest")
+
+Win + n -> refresh)
+Win + Tab -> Move focus to the next window
+
+Win + j -> Move focus to the next window
+Win + k -> Move focus to the next window
+Win + m -> Move focus to the master window
+
+Win + j + Shift -> Move focus to the next window
+Win + k + Shift -> Move focus to the next window
+
+Win + h + Shift -> Shrink the master area
+Win + l + Shift -> Expand the master area
+
+Win + b -> masque la bar
+
+Alt + space -> rofi
+control + alt + space -> clipboard
+alt + control + c -> recompile conf
+
+win + shift + l -> lock

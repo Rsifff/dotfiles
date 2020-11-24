@@ -1,0 +1,6 @@
+# Personal shared volume
+shared-data/
+shared-resources/
+
+# Build logs for debugging
+.build.log
