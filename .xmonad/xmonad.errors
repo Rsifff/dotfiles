@@ -1,14 +1,14 @@
 
-xmonad.hs:124:14: warning: [-Wdeprecations]
+xmonad.hs:127:14: warning: [-Wdeprecations]
     In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
     Deprecated: "Use spacingRaw instead."
     |
-124 |      tiled = spacing 3 $ ResizableTall nmaster delta ratio []
+127 |      tiled = spacing 3 $ ResizableTall nmaster delta ratio []
     |              ^^^^^^^
 
-xmonad.hs:126:16: warning: [-Wdeprecations]
+xmonad.hs:129:16: warning: [-Wdeprecations]
     In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
     Deprecated: "Use spacingRaw instead."
     |
-126 |      twopane = spacing 3 $ TwoPane delta ratio
+129 |      twopane = spacing 3 $ TwoPane delta ratio
     |                ^^^^^^^

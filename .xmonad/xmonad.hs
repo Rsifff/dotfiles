@@ -3,6 +3,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map -- as M
 import XMonad.Config.Azerty
 import Graphics.X11.ExtraTypes.XF86
+import XMonad.Config.Gnome
 
 -- Useful for rofi
 import XMonad.Hooks.EwmhDesktops
@@ -52,6 +53,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.TwoPane
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Dwindle
+import XMonad.Layout.Renamed (renamed, Rename(Replace))
 
     -- Prompt
 import XMonad.Prompt
@@ -82,9 +84,7 @@ myWorkspaces = [
   ( "0"        ,"0" ) ,
   ( "scrib"    ,"," ) ,
   ( "notes"    ,"." )
-
   ]
-
 
 myTabConfig = def { activeColor = "#556064"
                   , inactiveColor = "#2F3D44"
@@ -99,26 +99,29 @@ myTabConfig = def { activeColor = "#556064"
                   }
 
 myStartupHook = do
-          spawnOnce "xmobar &"
+          spawnOnce "xmobar ~/.xmonad/xmobarrc"
           spawnOnce "nitrogen --restore &"
           spawnOnce "volumeicon &"
           spawnOnce "picom &"
-          spawnOnce "discord"
+          -- spawn "discord"
           spawnOnce "fluxgui &"
           spawnOnce "greenclip daemon &"
           setWMName "LG3D"
+          spawn "~/.xmonad/startup-hook"
+
 
 myLayout = avoidStruts $
   -- noBorders (tabbed shrinkText myTabConfig)
-  tiled
-  ||| Mirror tiled
+  name "Normal" tiled
+  -- ||| Mirror tiled
   ||| noBorders Full
-  -- ||| twopane
+  ||| name "Miroir" twopane
   -- ||| Mirror twopane
   -- ||| emptyBSP
   -- ||| Spiral L XMonad.Layout.Dwindle.CW (3/2) (11/10) -- L means the non-main windows are put to the left.
 
   where
+     name n = renamed [Replace n] . smartBorders
      -- The last parameter is fraction to multiply the slave window heights
      -- with. Useless here.
      tiled = spacing 3 $ ResizableTall nmaster delta ratio []
@@ -142,6 +145,7 @@ myManageHook = composeAll
   [ -- isFullscreen --> doFullFloat
   className =? "discord" --> doShift "Discord"
   ]
+
 myKeys conf@(XConfig {XMonad.modMask = modm}) = Data.Map.fromList $
 
     -- launch a terminal
@@ -168,10 +172,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = Data.Map.fromList $
 
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-    , ((modm .|. shiftMask, xK_h), sendMessage $ JumpToLayout "tiled")
-    , ((modm .|. shiftMask, xK_v), sendMessage $ JumpToLayout "Mirror Tall")
+    , ((modm .|. shiftMask, xK_h), sendMessage $ JumpToLayout "Mirror Spacing TwoPane")
+    , ((modm .|. shiftMask, xK_v), sendMessage $ JumpToLayout "Miroir")
     , ((modm .|. shiftMask, xK_f), sendMessage $ JumpToLayout "Full")
-    -- , ((modm .|. shiftMask, xK_t), sendMessage $ JumpToLayout "Tabbed Simplest")
+    , ((modm .|. shiftMask, xK_t), sendMessage $ JumpToLayout "Tabbed Simplest")
 
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
@@ -313,9 +317,10 @@ baseXPKeymap = Data.Map.fromList $
      , (xK_Escape, quit)
      ]
 
+
 main = do
     xmproc <- spawnPipe "xmobar"
-    xmonad $ ewmh def 
+    xmonad $ ewmh gnomeConfig 
         { modMask = mod4Mask
         , manageHook = manageDocks <+> myManageHook
         , layoutHook = myLayout

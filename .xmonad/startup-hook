@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# xmonad "startup hook" script. This gets run after xmonad is initialized,
+# via the startupHook facility provided by xmonad. It's useful for 
+# running any programs which you want to use within xmonad but
+# which don't need to be initialized before xmonad is running. 
+# Network manager, so we don't have to configure wifi at the command line.
+
+setxkbmap -option caps:swapescape
+
+xrandr | grep -q 'HDMI-1 connected' 
+r=$?
+if [ 0 -eq r ]
+then
+    ~/.xmonad/xrandr-hdmi.sh
+fi
